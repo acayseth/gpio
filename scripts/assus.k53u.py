@@ -4,7 +4,7 @@ import time, sys
 
 # [GPIO] =========================================================
 #
-POWER_PIN  = 7 
+POWER_PIN  = 7
 STATUS_PIN = 22
 
 GPIO.setwarnings(True)
@@ -24,12 +24,12 @@ def powerOn(status):
     else:
         out = showStatus(status, 'is:')
     return out
-        
+
 def powerOff(status):
     if status == 1:
         GPIO.output(POWER_PIN, GPIO.HIGH)
         time.sleep(4.5)
-        GPIO.output(POWER_PIN, GPIO.LOW)        
+        GPIO.output(POWER_PIN, GPIO.LOW)
         out = showStatus(0, '>>> send.cmd->')
     else:
         out = showStatus(status, 'is:')
@@ -64,15 +64,15 @@ try:
     print("== [GPIO.INFO] ===================================")
     print("-=\t",GPIO.RPI_INFO['TYPE'],GPIO.RPI_INFO['RAM'],"GPIO.VER:",GPIO.VERSION,"\t=-")
     print("==================================================")
-    
+
     if len(sys.argv) == 2:
         cmd = sys.argv[1]
     else:
         cmd = "undefined"
-    
+
     output = init(cmd)
     print(output)
-    
+
     GPIO.cleanup()
     print("==================================================")
 except:
